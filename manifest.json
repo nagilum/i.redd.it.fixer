@@ -1,0 +1,15 @@
+{
+    "manifest_version": 2,
+    "name": "i.redd.it Fixer",
+    "version": "1.0",
+    "description": "Removes the UI on redd.it and replaces it with just the image.",
+    "icons": {
+        "64": "reddit-64.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://i.redd.it/*"],
+            "js": ["i.redd.it.fixer.js"]
+        }
+    ]
+}
