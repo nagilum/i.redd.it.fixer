@@ -33,6 +33,7 @@ img.style.height = html.clientHeight + 'px';
 img.style.margin = '0';
 img.style.padding = '0';
 
+// When clicking on the image, toggle between zoomed in and auto-height.
 img.onclick = () => {
     if (zoomedIn) {
         body.style.overflow = 'auto';
