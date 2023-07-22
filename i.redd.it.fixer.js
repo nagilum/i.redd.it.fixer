@@ -1,51 +1,67 @@
+"use strict";
+
 const body = document.querySelector('body');
 const img = document.querySelector('img');
-const html = document.documentElement;
+const clientHeight = document.documentElement.clientHeight + 'px';
+const image = new Image();
 
-let zoomedIn = true;
+image.src = img.src;
 
-// Remove all scripts.
-const scripts = document.querySelectorAll('script');
-
-scripts.forEach((script) => {
-    script.parentElement.remove(script);
-});
-
-// Reset body.
-body.innerHTML = '';
+const imageHeight = image.height;
+const imageWidth = image.width;
 
 body.removeAttribute('class');
 body.removeAttribute('style');
 
 body.style.backgroundColor = 'black';
-body.style.overflow = 'hidden';
-body.style.boxSizing = 'border-box';
 body.style.margin = '0';
-body.style.padding = '0';
-body.style.textAlign = 'center';
 
-// Setup image.
 img.removeAttribute('class');
 img.removeAttribute('style');
 img.removeAttribute('alt');
 
-img.style.height = html.clientHeight + 'px';
-img.style.margin = '0';
-img.style.padding = '0';
+img.style.cursor = 'zoom-in';
+img.style.display = 'block';
+img.style.height = clientHeight;
+img.style.inset = '0';
+img.style.margin = 'auto';
+img.style.position = 'absolute';
+img.style.textAlign = 'center';
 
-// When clicking on the image, toggle between zoomed in and auto-height.
-img.onclick = () => {
+body.innerHTML = '';
+body.appendChild(img);
+
+let zoomedIn = true;
+
+img.addEventListener('click', (e) => {
     if (zoomedIn) {
-        body.style.overflow = 'auto';
+        let scroll = false;
+        let nx = 0;
+        let ny = 0;
+
+        if (imageHeight > img.height || imageWidth > img.width) {
+            scroll = true;
+
+            const dx = imageWidth / img.width;
+            const dy = imageHeight / img.height;
+
+            nx = (e.layerX * dx) / 2;
+            ny = (e.layerY * dy) / 2;
+        }
+
+        img.style.cursor = 'zoom-out';
         img.style.height = 'auto';
+        img.style.marginTop = '0';
+
+        if (scroll) {
+            window.scrollTo(nx, ny);
+        }
     }
     else {
-        body.style.overflow = 'hidden';
-        img.style.height = html.clientHeight + 'px';
+        img.style.cursor = 'zoom-in';
+        img.style.height = clientHeight;
+        img.style.marginTop = 'auto';
     }
 
     zoomedIn = !zoomedIn;
-};
-
-// Add image back.
-body.appendChild(img);
+});
