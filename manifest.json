@@ -12,7 +12,12 @@
                 "https://i.redd.it/*.jpg",
                 "https://i.redd.it/*.jpeg",
                 "https://i.redd.it/*.png",
-                "https://i.redd.it/*.webp"
+                "https://i.redd.it/*.webp",
+
+                "https://preview.redd.it/*.jpg",
+                "https://preview.redd.it/*.jpeg",
+                "https://preview.redd.it/*.png",
+                "https://preview.redd.it/*.webp"
             ],
             "js": ["i.redd.it.fixer.js"]
         }
