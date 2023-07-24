@@ -1,23 +1,13 @@
 {
     "manifest_version": 2,
     "name": "i.redd.it Fixer",
-    "version": "1.1",
-    "description": "Removes the UI on redd.it and replaces it with just the image and better zoom.",
-    "icons": {
-        "64": "reddit-64.png"
-    },
+    "version": "1.2",
+    "description": "Removes the UI on i.redd.it and preview.redd.it, and replaces it with just the image and better zoom.",
     "content_scripts": [
         {
             "matches": [
-                "https://i.redd.it/*.jpg",
-                "https://i.redd.it/*.jpeg",
-                "https://i.redd.it/*.png",
-                "https://i.redd.it/*.webp",
-
-                "https://preview.redd.it/*.jpg",
-                "https://preview.redd.it/*.jpeg",
-                "https://preview.redd.it/*.png",
-                "https://preview.redd.it/*.webp"
+                "https://i.redd.it/*",
+                "https://preview.redd.it/*"
             ],
             "js": ["i.redd.it.fixer.js"]
         }
